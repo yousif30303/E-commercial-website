@@ -13,7 +13,7 @@ $db = new DBController();
 // Product object
 $product = new Product($db);
 
-print_r($product->getData());
+
 
 
 
