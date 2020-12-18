@@ -1,4 +1,5 @@
 <?php
+ob_start();
 //incluide header php file
 include('header.php')
 ?>
