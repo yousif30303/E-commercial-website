@@ -5,17 +5,17 @@ include('header.php')
 ?>
 
 <?php
-//incluide cart php file
-include('Templet/_cart-templet.php');
-//incluide cart php file
+    /*  include cart items if it is not empty */
+    count($product->getData('cart')) ? include ('Templet/_cart-templet.php') :  include ('Templet/notFound/_cart_notFound.php');
+    /*  include cart items if it is not empty */
 
-//incluide wishlist php file
-include('Templet/_wishilist_template.php');
-//incluide wishlist php file
+    /*  include top sale section */
+    count($product->getData('wishlist')) ? include ('Templet/_wishilist_template.php') :  include ('Templet/notFound/_wishlist_notFound.php');
+    /*  include top sale section */
 
-//incluide new phone php file
-include('Templet/_new-phones.php');
-//incluide new phone php file
+    //incluide new phone php file
+    include('Templet/_new-phones.php');
+    //incluide new phone php file
 
 ?>
 

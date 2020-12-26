@@ -58,6 +58,17 @@ class Cart
         }
     }
 
+    // delete cart item from wishlist
+    public function deleteCartWishlist($item_id = null, $table = 'wishlist'){
+        if($item_id != null){
+            $result = $this->db->con->query("DELETE FROM {$table} WHERE item_id={$item_id}");
+            if($result){
+                header("Location:" . $_SERVER['PHP_SELF']);
+            }
+            return $result;
+        }
+    }
+
     // calculate sub total
     public function getSum($arr){
         if(isset($arr)){

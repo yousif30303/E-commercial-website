@@ -1,4 +1,15 @@
 <?php
+  shuffle($product_shuffle);
+
+      // request method post
+  if($_SERVER['REQUEST_METHOD'] == "POST"){
+        if (isset($_POST['add_submit'])){
+            // call method addToCart
+            $Cart->addToCart($_POST['user_id'], $_POST['item_id']);
+        }
+    }
+?>
+<?php
 $item_id = $_GET['item_id'] ?? 1;
 foreach($product->getData() as $item):
     if($item['item_id'] == $item_id):
@@ -14,7 +25,17 @@ foreach($product->getData() as $item):
                                     <button type="submit" class="btn btn-danger form-control">Proceed to Buy</button>
                                 </div>
                                 <div class="col">
-                                    <button type="submit" class="btn btn-warning form-control">Add to Cart</button>
+                                <form method="post">
+                                    <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?? '1'; ?>">
+                                    <input type="hidden" name="user_id" value="<?php echo 1; ?>">
+                                    <?php
+                                        if (in_array($item['item_id'], $Cart->getCartId($product->getData('cart')) ?? [])){
+                                            echo '<button type="submit" disabled class="btn btn-success font-size-16 form-control">In the Cart</button>';
+                                        }else{
+                                            echo '<button type="submit" name="add_submit" class="btn btn-warning font-size-16 form-control">Add to Cart</button>';
+                                        }
+                                    ?>
+                        </form>
                                 </div>
                             </div>
                         </div>
